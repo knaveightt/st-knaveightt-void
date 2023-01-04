@@ -1,23 +1,40 @@
-# Template file for 'st-knaveightt-void'
-pkgname=st-knaveightt-void
-version=1
+# Template file for 'st'
+# Modified by knaveightt for select patches
+# Modified template provided by github.com/knaveightt/st-knaveightt-void
+pkgname=st
+version=0.9
 revision=1
-#archs="i686 x86_64"
-#wrksrc=
-#create_wrksrc=yes
-build_style=gnu-configure
-#configure_args=""
-#make_build_args=""
-#make_install_args=""
-#conf_files=""
-#make_dirs="/var/log/dir 0755 root root"
-hostmakedepends=""
-makedepends=""
-depends=""
-short_desc=""
-maintainer="John Osinski <johnosinski80@gmail.com>"
-license="GPL-3.0-or-later"
-homepage=""
-#changelog=""
-distfiles=""
-checksum=badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadb
+build_style=gnu-makefile
+make_use_env=compliant
+hostmakedepends="pkg-config"
+makedepends="fontconfig-devel libX11-devel libXft-devel"
+depends="ncurses st-terminfo-${version}_${revision}"
+short_desc="Simple terminal implementation for X"
+maintainer="meator <meator.dev@gmail.com>"
+license="MIT"
+homepage="https://st.suckless.org"
+distfiles="https://dl.suckless.org/${pkgname}/${pkgname}-${version}.tar.gz"
+checksum=f36359799734eae785becb374063f0be833cf22f88b4f169cd251b99324e08e7
+
+pre_build() {
+	vsed -i config.def.h -e 's|Liberation Mono|Monospace|g'
+	[ -e ${FILESDIR}/config.h ] && cp ${FILESDIR}/config.h config.h
+	mkdir -p ${DESTDIR}/usr/share/terminfo
+}
+
+pre_install() {
+	export TERMINFO=${DESTDIR}/usr/share/terminfo
+}
+
+post_install() {
+	vdoc README
+	vdoc FAQ
+	vlicense LICENSE
+}
+
+st-terminfo_package() {
+	short_desc+=" - terminfo data"
+	pkg_install() {
+		vmove usr/share/terminfo
+	}
+}
