@@ -1,11 +1,11 @@
 # st-knaveightt-void (st-0.9)
-> Patched st terminal used for my workstations, provided via a patch against st-0.9 for use with xbps-src automated installation in void linux.
+> Patch used to modify the [st terminal](https://st.suckless.org) used for my workstations. This patch is provided against st-0.9 for use with xbps-src to automate patching and installation in void linux.
 
 ## Usage 
-Included in this repo is a patch file which represents a full patch to the original st source. The following are usage instructions for incorporating this patch for usage in Void Linux's xbps-src build workflow, however the final patch can be used however you may normally patch st for installation into your own system. 
-- copy the patch file to a *patches* directory in the `void-packages/srcpkgs/st` directory
-- run `xbps-src pkg st` to build the xbps package
-- install the package from the void-packages directory using `sudo xbps-install --force --repository=hostdir/binpkgs/ st`
+Included in this repo is a patch file which represents a collection of patches to the original st source. The following are usage instructions for incorporating this patch using Void Linux's xbps-src build workflow, however the final patch can be used any way you would normally patch st. 
+- Copy the patch file to a *patches* directory in `void-packages/srcpkgs/st` 
+- Run `xbps-src pkg st` to build the xbps package
+- Install the package from the void-packages directory using `sudo xbps-install --force --repository=hostdir/binpkgs/ st`
 - Recommendation is to lock the st package to the local repo so changes from the default repositories don't overwrite the package. Do this using `xbps-pkgdb -m repolock st`
 
 ## Patch List
@@ -20,14 +20,15 @@ List of included patches are as follows.
 ## Notes on Patch Application
 - It seems to be a good idea to execute `./xbps-src clean` prior to doing any manual patching
 - `xbps-src extract st` was used to download the original source code for st for use of patching
-- a copy of the source directory was created and used for the actual patching
-- patches were downloaded to a common directory (see *Patch List* section above)
-- patches were applied using `patch -Np1 -i <input_patch_name>` in the patched source directory
+- A copy of the source directory was created and used for the actual patching
+- Patches were downloaded to a common directory (see *Patch List* section above)
+- Patches were applied using `patch -Np1 -i <input_patch_name>` in the patched source directory
 	- Xresources patch specifics:
 		- updated defaultfg, defaultbg, defaultcs, defaultrcs to map to the correct 
 		  &colorname array value, mapping to the correct Xresources element
 	- boxdraw patch specifics: none
-	- defaultfontsize specifics
-		- none, however I updated the font in the config.def.h file to Inconsolata Nerd Font
+	- defaultfontsize specifics:
+		- none really, however I updated the font in the config.def.h file to Inconsolata Nerd Font
+	- anysize patch specifics: none
 - A final *overall* patch was created using `diff -Np1 <original_source_dir> <patched_source_dir> > <diff_file_Name>`
-- the final *overall* patch is what is included in this repo. follow the *Usage* section for installation instructions
+- The final *overall* patch is what is included in this repo. Follow the *Usage* section for installation instructions
