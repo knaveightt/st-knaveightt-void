@@ -10,7 +10,7 @@
 #
 # Make sure the list of patches to automatically download is up to date as well
 
-PATCHING_DIR="${HOME}/Projects/st-knaveightt-void"
+PATCHING_DIR="${HOME}/Projects/st-knaveightt-void-patching"
 VOID_PKGS_DIR="${HOME}/Shelf/void-packages"
 
 # list of patches to download for application
@@ -20,13 +20,15 @@ patch_list=(
     "https://st.suckless.org/patches/defaultfontsize/st-defaultfontsize-20210225-4ef0cbd.diff"
     "https://st.suckless.org/patches/anysize/st-anysize-20220718-baa9357.diff"
     "https://st.suckless.org/patches/font2/st-font2-0.8.5.diff"
+    "https://st.suckless.org/patches/glyph_wide_support/st-glyph-wide-support-boxdraw-20220411-ef05519.diff"
 )
 
 
 
 # create necessary folder structure and grab sources
 echo "Creating destination folders..."
-if [ -d "${PATCHING_DIR}" ] then
+if [ -d "${PATCHING_DIR}" ] 
+then
     echo "Perfoming clean up first..."
     rm -rf ${PATCHING_DIR}
     echo "Removed prior destination folder instance."

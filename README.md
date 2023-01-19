@@ -13,24 +13,25 @@ List of included patches are as follows.
 | Patch Name | Source URL |
 | ---------- | ---------- |
 | xresources | [https://st.suckless.org/patches/xresources/st-xresources-20200604-9ba7ecf.diff](https://st.suckless.org/patches/xresources/st-xresources-20200604-9ba7ecf.diff) |
-| boxdraw    | [https://st.suckless.org/patches/boxdraw/st-boxdraw_v2-0.8.5.diff](https://st.suckless.org/patches/boxdraw/st-boxdraw_v2-0.8.5.diff) |
 | defaultfontsize | [https://st.suckless.org/patches/defaultfontsize/st-defaultfontsize-20210225-4ef0cbd.diff](https://st.suckless.org/patches/defaultfontsize/st-defaultfontsize-20210225-4ef0cbd.diff) |
 | anysize | [https://st.suckless.org/patches/anysize/st-anysize-20220718-baa9357.diff](https://st.suckless.org/patches/anysize/st-anysize-20220718-baa9357.diff) |
-| font2   | [https://st.suckless.org/patches/font2/st-font2-0.8.5.diff](https://st.suckless.org/patches/font2/st-font2-0.8.5.diff)
+| font2   | [https://st.suckless.org/patches/font2/st-font2-0.8.5.diff](https://st.suckless.org/patches/font2/st-font2-0.8.5.diff) |
+| glyph wide support | [https://st.suckless.org/patches/glyph_wide_support/st-glyph-wide-support-20220411-ef05519.diff](https://st.suckless.org/patches/glyph_wide_support/st-glyph-wide-support-20220411-ef05519.diff) | 
 
 ## Notes on Patch Application
 - It seems to be a good idea to execute `./xbps-src clean` prior to doing any manual patching
 - `xbps-src extract st` was used to download the original source code for st for use of patching
 - A copy of the source directory was created and used for the actual patching
 - Patches were downloaded to a common directory (see *Patch List* section above)
-- Patches were applied using `patch -Np1 -i <input_patch_name>` in the patched source directory
+- Patches were applied in this order using `patch -Np1 -i <input_patch_name>` in the patched source directory
+	- glyph wide support: none
     - font2 patch specifics:
         - changed the font and font2 pointers in the config.def.h file to desired font name
 	- Xresources patch specifics:
 		- updated defaultfg, defaultbg, defaultcs, defaultrcs to map to the correct 
 		  &colorname array value, mapping to the correct Xresources element
-	- boxdraw patch specifics: none
 	- defaultfontsize specifics: none
-	- anysize patch specifics: none
+	- anysize patch specifics
+        - glyph wide support patch did not play nice with this patch, had to manually fix the rejects
 - A final *overall* patch was created using `diff -Np1 <original_source_dir> <patched_source_dir> > <diff_file_Name>`
 - The final *overall* patch is what is included in this repo. Follow the *Usage* section for installation instructions
