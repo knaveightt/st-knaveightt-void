@@ -15,12 +15,12 @@ VOID_PKGS_DIR="${HOME}/Shelf/void-packages"
 
 # list of patches to download for application
 patch_list=(
+    "https://st.suckless.org/patches/glyph_wide_support/st-glyph-wide-support-20220411-ef05519.diff"
+    "https://st.suckless.org/patches/font2/st-font2-0.8.5.diff"
     "https://st.suckless.org/patches/xresources/st-xresources-20200604-9ba7ecf.diff"
-    "https://st.suckless.org/patches/boxdraw/st-boxdraw_v2-0.8.5.diff"
     "https://st.suckless.org/patches/defaultfontsize/st-defaultfontsize-20210225-4ef0cbd.diff"
     "https://st.suckless.org/patches/anysize/st-anysize-20220718-baa9357.diff"
-    "https://st.suckless.org/patches/font2/st-font2-0.8.5.diff"
-    "https://st.suckless.org/patches/glyph_wide_support/st-glyph-wide-support-boxdraw-20220411-ef05519.diff"
+    "https://st.suckless.org/patches/scrollback/st-scrollback-0.8.5.diff"
 )
 
 
