@@ -1,6 +1,6 @@
 diff -Np1 st-0.9/config.def.h patched_st/config.def.h
 *** st-0.9/config.def.h	2023-01-30 15:30:38.591972939 -0500
---- patched_st/config.def.h	2023-01-30 16:02:52.026912460 -0500
+--- patched_st/config.def.h	2023-01-30 16:11:57.882895385 -0500
 ***************
 *** 7,9 ****
    */
@@ -98,8 +98,8 @@ diff -Np1 st-0.9/config.def.h patched_st/config.def.h
 *** 203,204 ****
 --- 245,248 ----
   	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-+ 	{ ShiftMask,            XK_K,           kscrollup,      {.i = -1} },
-+ 	{ ShiftMask,            XK_J,           kscrolldown,    {.i = -1} },
++ 	{ TERMMOD,              XK_K,           kscrollup,      {.i = -1} },
++ 	{ TERMMOD,              XK_J,           kscrolldown,    {.i = -1} },
   };
 diff -Np1 st-0.9/config.def.h.orig patched_st/config.def.h.orig
 *** st-0.9/config.def.h.orig	1969-12-31 19:00:00.000000000 -0500
